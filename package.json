@@ -23,5 +23,7 @@
     "preview": "bb components preview",
     "lint": "eslint --ext js ./src"
   },
-  "files": ["dist"]
+  "files": [
+    "dist"
+  ]
 }
