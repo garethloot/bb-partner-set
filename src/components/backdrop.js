@@ -6,8 +6,19 @@
   jsx: (() => {
     const { Backdrop, CircularProgress } = window.MaterialUI.Core;
     const { env } = B;
-    const { spinnerSize, spinnerThickness } = options;
+    const { spinnerSize, spinnerThickness, visibility } = options;
     const isDev = env === 'dev';
+
+    const [open, setOpen] = useState(visibility);
+
+    B.defineFunction('Show', () => setOpen(true));
+    B.defineFunction('Hide', () => setOpen(false));
+    B.defineFunction('ToggleShow', () => setOpen(e => !e));
+
+    function handleClick() {
+      setOpen(false);
+      B.triggerEvent('onClose', 'Backdrop was closed');
+    }
 
     return isDev ? (
       <div className={classes.preview}>
@@ -18,7 +29,7 @@
         />
       </div>
     ) : (
-      <Backdrop className={classes.backdrop} open>
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClick}>
         <CircularProgress
           className={classes.progress}
           size={spinnerSize}

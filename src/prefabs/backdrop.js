@@ -7,6 +7,13 @@
       name: 'Backdrop',
       options: [
         {
+          type: 'TOGGLE',
+          label: 'Initial visibility',
+          key: 'visibility',
+          value: false,
+          configuration: { as: 'VISIBILITY' },
+        },
+        {
           type: 'SIZE',
           label: 'Spinner size',
           key: 'spinnerSize',
